@@ -1,0 +1,50 @@
+body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    background-color: #9DCA4B;
+}
+
+.app {
+    background-color: #9DCA4B;
+    margin:5% 10% 5% 10%;
+}
+
+.row {
+    margin:0;
+}
+
+.title {
+    background-color: #FFFFFF;
+    margin-top:5px;
+    padding:20px;
+    font-size: 24px;
+    color:#608C11
+}
+
+.aside-wrap {
+    float: left;
+    width:180px;
+}
+
+.nav > li {
+    font-size: 20px;
+    color:#608C11;
+    padding:15px;
+    background-color: #C2EB78;
+}
+
+.nav > .active {
+    background-color: #FFFFFF;
+}
+
+.content {
+    background-color: #FFFFFF; margin-left:180px; padding:5%;
+}
+
+.btn {
+    margin:10px;
+}
+
+select {
+    max-width:40%;
+}
