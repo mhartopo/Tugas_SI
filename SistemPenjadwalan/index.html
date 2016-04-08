@@ -11,64 +11,47 @@
     <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="css/font.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style-bayu.css" type="text/css" />
 </head>
 <body>
     <div class="app">
-        <!-- header -->
-        <header id="header">
-            <div class="row">
-                <div class="title col-md-offset-9 col-md-3">
-                    Cucian Baru
-                </div>
-            </div>
-        </header>
-        <!-- / header -->
-
         <!-- aside -->
-        <aside id="aside">
+        <div id="aside" class="background-ul">
             <div class="aside-wrap">
                 <!-- nav -->
                 <nav ui-nav class="navi clearfix">
                     <ul class="nav">
-                        <li class="active">
-                            <span>1. Pelanggan</span>
+                        <li>
+                            <span></span>
                         </li>
                         <li>
-                            <span>2. Cucian</span>             
+                            <span><img src="img/logo-ul.png" class="icon-md"></img></span>             
                         </li>
                         <li>
-                            <span>3. Konfirmasi</span>
+                            <span></span>
+                        </li>
+                        <li>
+                            <span></span>
                         </li>
                     </ul>
                 </nav>
                 <!-- nav -->
             </div>
-        </aside>
+        </div>
         <!-- / aside -->
 
         <!-- content -->
-        <div id="content" class="content content-ul">
+        <div id="content" class="content">
             <form role="form">
                 <div class="form-group">
-                    <select name="account" class="form-control m-b">
-                        <option>Bukan Member</option>
-                        <option>Member</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" class="form-control" placeholder="Masukan Nama">
+                    <input type="text" class="form-control" placeholder="Nama">
                 </div>
                 <div class="form-group">
-                    <label>Alamat</label>
-                    <input type="text" class="form-control" placeholder="Alamat">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Password">
                 </div>
-                <div class="form-group">
-                    <label>No. Telepon</label>
-                    <input type="text" class="form-control" placeholder="Nomor Telepon">
-                </div>
-                <button type="submit" class="btn btn-default btn-lg ">Kembali</button>
-                <button type="submit" class="btn btn-lg btn-success">Lanjut</button>
+                <button type="submit" class="btn btn-lg btn-success">Masuk</button>
             </form>
         </div>
         <!-- / content -->
