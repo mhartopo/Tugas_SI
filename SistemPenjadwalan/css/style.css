@@ -38,7 +38,12 @@ body {
 }
 
 .content {
-    background-color: #FFFFFF; margin-left:180px; padding:5%;
+    background-color: #FFFFFF;  
+    padding:5%;
+}
+
+.content-ul {
+    margin-left:180px;
 }
 
 .btn {
@@ -46,5 +51,23 @@ body {
 }
 
 select {
-    max-width:40%;
+    max-width:200px;
+}
+
+input[type="number"] {
+    max-width:200px;
+}
+
+.wrapper-sm {
+    padding:10px;
+}
+
+.btn {
+    margin:0;
+}
+
+.panel-default > .panel-heading,
+.panel-default > .panel-footer {
+  border-color: #edf1f2;
+  background-color: #f6f8f8;
 }
