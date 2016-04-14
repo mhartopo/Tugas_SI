@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../resources/libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="../css/font.css" type="text/css" />
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/style-muhtar.css" type="text/css" />
     <link rel="stylesheet" href="../css/mighticon.css" type="text/css" />
 </head>
 <body>

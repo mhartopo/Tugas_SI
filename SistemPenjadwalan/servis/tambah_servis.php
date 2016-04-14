@@ -19,11 +19,11 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label>Jenis</label>
-                                <input type="text" name = "jenis" class="form-control">
+                                <input type="text" name = "jenis" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Harga</label>
-                                <input type="text" name = "harga" class="form-control">
+                                <input type="text" name = "harga" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-lg btn-success">Tambah</button>
                     </form>
@@ -32,7 +32,8 @@
 
         </div>
         <!-- / content -->
-
     </div>
+
+
     
 <?php include('../includes/footer.php') ?>
