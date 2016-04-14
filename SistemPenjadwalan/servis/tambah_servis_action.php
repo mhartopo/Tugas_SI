@@ -1,7 +1,7 @@
 <?php
 	include('../../resources/functions/servis/servis.php');
-	$jenis = $_GET['jenis'];
-	deleteServis($jenis);
-	
+	$jenis = $_POST['jenis'];
+	$harga = $_POST['harga'];
+	addServis($jenis, $harga);
 	header('Location: lihat_servis.php');
 ?>

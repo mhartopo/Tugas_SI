@@ -37,6 +37,7 @@
 		try {
 			
 			$stmt = $db->prepare("SELECT * FROM servis_selesai");
+			$stmt->execute();
 			return $stmt->fetchAll();
 
 		}catch(PDOException $e) {
@@ -51,6 +52,7 @@
 			
 			$stmt = $db->prepare("SELECT * FROM servis_selesai WHERE id_laundry = :id_laundry");
 			$stmt->bindParam(':id_laundry', $id_laundry);
+			$stmt->execute();
 			return $stmt->fetchAll();
 
 		}catch(PDOException $e) {
@@ -65,6 +67,7 @@
 			
 			$stmt = $db->prepare("SELECT * FROM servis_selesai WHERE jenis = :jenis");
 			$stmt->bindParam(':jenis', $jenis);
+			$stmt->execute();
 			return $stmt->fetchAll();
 
 		}catch(PDOException $e) {
@@ -80,6 +83,7 @@
 			$stmt = $db->prepare("SELECT * FROM servis_selesai WHERE id_laundry = :id_laundry AND jenis = :jenis");
 			$stmt->bindParam(':id_laundry', $id_laundry);
 			$stmt->bindParam(':jenis', $jenis);
+			$stmt->execute();
 			return $stmt->fetchAll();
 
 		}catch(PDOException $e) {
@@ -91,7 +95,7 @@
 	function deleteServisSelesai($id_laundry, $jenis) {
 		global $db;
 		try {
-			$stmt = $db->prepare("DELETE servis_selesai WHERE id_laundry = :id_laundry AND jenis = :jenis");
+			$stmt = $db->prepare("DELETE FROM servis_selesai WHERE id_laundry = :id_laundry AND jenis = :jenis");
 			$stmt->bindParam(':id_laundry', $id_laundry);
 			$stmt->bindParam(':jenis', $jenis);
 			$stmt->execute();

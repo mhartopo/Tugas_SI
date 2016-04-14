@@ -1,4 +1,12 @@
-<?php include("../includes/head.php"); ?>
+<?php 
+
+	include("../includes/head.php"); 
+	include("../includes/head.php"); 
+    include('../../resources/functions/servis/servis.php');
+        
+    $result = getAllServis();
+
+?>
 
     <div class="app">
         <!-- header -->
@@ -35,21 +43,26 @@
 						          </tr>
 						        </thead>
 						        <tbody>
-						            <tr data-expanded="true">
-						              <td></td>
-						              <td></td>
-						              <td></td>
-						              <td>
-						                <div class="btn-group dropdown">             
-						                  <button class="btn m-b-sm m-r-sm btn-warning btn-sm" data-toggle="dropdown"><span class="caret"></span></button>
-						                  <ul class="dropdown-menu">
-						                    <li><a href="edit_servis.php">Edit</a></li>
-						                    <li class="divider"></li>
-						                    <li><a href="#">Hapus</a></li>
-						                  </ul>
-						                </div>
-						              </td>
-						            </tr>  
+						        	<?php 
+						        		$i = 1; 
+						        		foreach ($result as $row): 
+						        	?>
+							            <tr data-expanded="true">
+							              <td><?php echo $i; $i++;?></td>
+							              <td><?php echo $row['jenis'];?></td>
+							              <td><?php echo $row['harga'];?></td>
+							              <td>
+							                <div class="btn-group dropdown">             
+							                  <button class="btn m-b-sm m-r-sm btn-warning btn-sm" data-toggle="dropdown"><span class="caret"></span></button>
+							                  <ul class="dropdown-menu">
+							                    <li><a href="edit_servis.php?jenis=<?php echo $row['jenis'];?>">Edit</a></li>
+							                    <li class="divider"></li>
+							                    <li><a href="hapus_servis.php?jenis=<?php echo $row['jenis'];?>">Hapus</a></li>
+							                  </ul>
+							                </div>
+							              </td>
+							            </tr>
+							        <?php endforeach; ?>  
 						        </tbody>
 						      </table>
                         </div>

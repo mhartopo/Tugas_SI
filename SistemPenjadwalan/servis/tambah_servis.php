@@ -15,7 +15,7 @@
         <div id="content" class="content">
             <div class="row">
                 <div class="col-sm-12">
-                    <form role="form" action = "#" method = "POST">
+                    <form role="form" action = "tambah_servis_action.php" method = "POST">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label>Jenis</label>

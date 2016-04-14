@@ -41,10 +41,10 @@
 		$db = null;
 	}
 
-	function deleteService($jenis) {
+	function deleteServis($jenis) {
 		global $db;
 		try {
-			$stmt = $db->prepare("DELETE servis WHERE jenis = :jenis");
+			$stmt = $db->prepare("DELETE FROM servis WHERE jenis = :jenis");
 			$stmt->bindParam(':jenis', $jenis);
 			$stmt->execute();
 		} catch(PDOException $e) {
@@ -53,10 +53,11 @@
 		$db = null;
 	}
 
-	function getService() {
+	function getAllServis() {
 		global $db;
 		try {
 			$stmt = $db->prepare("SELECT * from servis");
+			$stmt->execute();
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -64,11 +65,12 @@
 		$db = null;
 	}
 
-	function getHargaService($jenis) {
+	function getServis_jenis($jenis) {
 		global $db;
 		try {
 			$stmt = $db->prepare("SELECT * from servis WHERE jenis = :jenis");
 			$stmt->bindParam(':jenis', $jenis);
+			$stmt->execute();
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -76,12 +78,12 @@
 		$db = null;
 	}
 
-	function searchHargaService($jenis) {
+	function searchHargaServis($jenis) {
 		global $db;
 		try {
 			$stmt = $db->prepare("SELECT * from servis WHERE jenis LIKE :jenis");
 			$stmt->bindParam(':jenis', $jenis);
-
+			$stmt->execute();
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
 			echo $e->getMessage();
