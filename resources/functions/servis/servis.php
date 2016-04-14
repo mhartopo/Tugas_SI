@@ -81,7 +81,7 @@
 	function searchHargaServis($jenis) {
 		global $db;
 		try {
-			$stmt = $db->prepare("SELECT * from servis WHERE jenis LIKE :jenis");
+			$stmt = $db->prepare("SELECT harga from servis WHERE jenis LIKE :jenis");
 			$stmt->bindParam(':jenis', $jenis);
 			$stmt->execute();
 			return $stmt->fetchAll();

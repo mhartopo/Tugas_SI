@@ -37,7 +37,7 @@
 		$total = 0;
 		if (count($temp) > 0) {
             foreach ($temp as $key => $field) {
-            	$temp[$key]['harga'] = getHargaService($temp[$key]['jenis'])[0][0];
+            	$temp[$key]['harga'] = searchHargaService($temp[$key]['jenis'])[0][0];
                 $temp[$key]['subtotal'] = intval($temp[$key]['jumlah']) * intval($temp[$key]['harga']);
                 $total = $total + $temp[$key]['subtotal'];
             }
