@@ -4,7 +4,7 @@
         <header id="header">
             <div class="row">
                 <div class="title col-md-offset-9 col-md-3">
-                    Tambah Servis
+                   Edit Servis
                 </div>
             </div>
         </header>
@@ -18,13 +18,13 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label>Jenis</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name = "jenis" class="form-control" value = "JENIS" readonly></input>
                             </div>
                             <div class="form-group">
                                 <label>Harga</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name = "harga" class="form-control" value = "1231311"></input>
                             </div>
-                            <button type="submit" class="btn btn-lg btn-success">Tambah</button>
+                            <button type="submit" class="btn btn-lg btn-success">Simpan</button>
                     </form>
                 </div>
             </div>

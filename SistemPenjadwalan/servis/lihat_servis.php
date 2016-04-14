@@ -13,9 +13,16 @@
 
         <!-- content -->
         <div id="content" class="content">
-            <div class="row">
-                <div class="col-md-12">
-                            <table class="table" ui-jq="footable" ui-options='{
+        	<div class="row">
+        		<div class="col-md-3">
+    			  <button class="btn m-b-sm m-r-sm btn-success" onclick="location.href = 'tambah_servis.php';"><i class="m-r-xs fa fa-plus"></i>Tambahkan Servis</button>
+    			</div>
+        	<br><br><br>
+        	<div>
+
+        	<div class="panel panel-default">
+			    <div class="panel-heading font-semibold">
+                           <table class="table" ui-jq="footable" ui-options='{
 						        "paging": {
 						          "enabled": true
 						        }}'>

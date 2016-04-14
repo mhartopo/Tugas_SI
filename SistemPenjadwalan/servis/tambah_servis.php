@@ -15,15 +15,15 @@
         <div id="content" class="content">
             <div class="row">
                 <div class="col-sm-12">
-                    <form role="form" action = "#">
+                    <form role="form" action = "#" method = "POST">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label>Jenis</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name = "jenis" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Harga</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name = "harga" class="form-control">
                             </div>
                             <button type="submit" class="btn btn-lg btn-success">Tambah</button>
                     </form>
