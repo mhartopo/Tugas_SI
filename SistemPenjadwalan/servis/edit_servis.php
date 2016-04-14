@@ -1,5 +1,4 @@
-<?php include('head.php'); ?>
-
+<?php include("../includes/head.php"); ?>
        <div class="app">
         <!-- header -->
         <header id="header">
@@ -26,14 +25,11 @@
                                 <input type="text" class="form-control">
                             </div>
                             <button type="submit" class="btn btn-lg btn-success">Tambah</button>
-                        </div>
                     </form>
                 </div>
             </div>
 
         </div>
         <!-- / content -->
-
     </div>
-    
-<?php include('footer.php') ?>
+<?php include('../includes/footer.php') ?>
