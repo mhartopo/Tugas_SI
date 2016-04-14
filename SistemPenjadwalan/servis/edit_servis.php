@@ -1,5 +1,5 @@
 <?php 
-    include("../includes/head.php"); 
+    include("includes/head.php"); 
     include('../../resources/functions/servis/servis.php');
     if(!isset($_GET['jenis'])) {
         header('Location: lihat_servis.php');   
@@ -42,4 +42,4 @@
         </div>
         <!-- / content -->
     </div>
-<?php include('../includes/footer.php') ?>
+<?php include('includes/footer.php') ?>

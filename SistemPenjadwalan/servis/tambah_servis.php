@@ -1,4 +1,4 @@
-<?php include("../includes/head.php"); ?>
+<?php include("includes/head.php"); ?>
 
        <div class="app">
         <!-- header -->
@@ -36,4 +36,4 @@
 
 
     
-<?php include('../includes/footer.php') ?>
+<?php include('includes/footer.php') ?>

@@ -1,139 +1,86 @@
-<!DOCTYPE html>
-<html lang="en" class="">
-<head>
-  <meta charset="utf-8" />
-  <title>Bandung Web Kit | BDGWEBKIT</title>
-  <meta name="description" content="Bandung Web Kit" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="../resources/libs/assets/animate.css/animate.css" type="text/css" />
-  <link rel="stylesheet" href="../resources/libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="../resources/libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
-  <link rel="stylesheet" href="../resources/libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
-  <link rel="stylesheet" href="css/font.css" type="text/css" />
-  <link rel="stylesheet" href="css/style-muhtar.css" type="text/css" />
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+<?php include("includes/head.php"); ?>
 
-</head>
-<body>
-       <div class="app">
-        <!-- header -->
-        <header id="header">
-            <div class="row">
-                <div class="title col-md-offset-9 col-md-3">
-                    Statistik
-                </div>
-            </div>
-        </header>
-        <!-- / header -->
 
-        <!-- content -->
-        <div id="content" class="content">
-            
-       <div class="row">
-              <div class="col-lg-4">
-                <div class="panel panel-default">
-                  <div class="panel-heading font-regular">
-                    New Visitors
-                  </div>
-                  <div class="panel-body text-center no-padder">
-                    <h4 class="text-warning">120.000</h4>
-                    <small class="text-light-grey block">Updated at 1 minutes ago</small>
-                    <div class="inline">
-                      <div ui-jq="easyPieChart" ui-options="{
-                                percent: 75,
-                                lineWidth: 10,
-                                trackColor: '#e5e6ec',
-                                barColor: '#ff7e00',
-                                scaleColor: '#fff',
-                                size: 188,
-                                lineCap: 'butt'
-                              }">
-                        <div>
-                          <span class="h2">75%</span>
-                          <div class="text">Yesterday</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel-footer"><small>% of avarage rate of the Conversion</small></div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="panel panel-default">
-                  <div class="panel-heading font-regular">
-                    Today Visitors
-                  </div>
-                  <div class="panel-body text-center no-padder">
-                    <h4 class="text-success">40.000</h4>
-                    <small class="text-light-grey block">Updated at 3 minutes ago</small>
-                    <div class="inline">
-                      <div ui-jq="easyPieChart"  ui-options="{
-                                percent: 25,
-                                lineWidth: 10,
-                                trackColor: '#e5e6ec',
-                                barColor: '#8dc80e',
-                                scaleColor: '#ffffff',
-                                size: 188,
-                                lineCap: 'butt',
-                                animate: 1000
-                              }">
-                        <div>
-                          <span class="h2 m-l-sm step">25</span>%
-                          <div class="text">today</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel-footer"><small>% of change</small></div>
-                </div>
-              </div>
-
-              <div class="col-lg-4">
-                <div class="panel panel-default">
-                  <div class="panel-heading font-regular">
-                    Daily Visitors
-                  </div>
-                  <div class="panel-body text-center no-padder">
-                    <h4 class="text-info">430.000</h4>
-                    <small class="text-light-grey block">All Domestic Visitors</small>
-                    <div class="inline">
-                      <div ui-jq="easyPieChart"  ui-options="{
-                                percent: 97,
-                                lineWidth: 10,
-                                trackColor: '#e5e6ec',
-                                barColor: '#00b0ff',
-                                scaleColor: '#ffffff',
-                                size: 188,
-                                lineCap: 'butt',
-                                animate: 1000
-                              }">
-                        <div>
-                          <span class="h2 m-l-sm step">97</span>%
-                          <div class="text">All Visitors</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel-footer"><small>% of change</small></div>
-                </div>
-              </div>
-   
-          </div>
-                
-        <!-- / content -->
+<div class="app">
+<!-- header -->
+<header id="header">
+    <div class="row">
+        <div class="title col-md-offset-9 col-md-3">
+            Statistik
+        </div>
     </div>
+</header>
+<!-- / header -->
+
+<!-- content -->
+<div id="content" class="content">
+  <h3>Permintaan Sepekan Terakhir</h3>
+  <div class = "row">
+  <div class = "col-md-12">    
+    <div class="panel panel-default">
+      <div class="panel-heading font-regular">Tabel Permintaan Sepekan Terakhir</div>
+      <div class="panel-body no-padder">
+        <div class="wrapper">
+          <div ui-jq="plot" ui-options="
+            [
+              { data: [ [0,7],[1,6.5],[2,12.5],[3,7],[4,9],[5,6],[6,11],[7,6.5],[8,8],[9,7], [10,11],[11,6.5],[12,8],[13,7],[14,11],[16,6.5],[18,8],[30,7] ], label: ' Unique Visits', points: { show: true, radius: 3, fill:true,fillColor : '#00b0ff' }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },                 
+            ],
+            {
+              colors: [ '#00b0ff','#8dc80e' ],
+              series: { shadowSize: 2 },
+              xaxis:{ font: { color: '#ccc' } },
+              yaxis:{ font: { color: '#ccc' } },
+              grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+              tooltip: true,
+              legend : false,
+              tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+            }
+          " style="height: 240px; padding: 0px; position: relative;"><canvas class="flot-base" width="501" height="240" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 501px; height: 240px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 22px; text-align: center;">0</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 74px; text-align: center;">1</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 126px; text-align: center;">2</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 178px; text-align: center;">3</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 230px; text-align: center;">4</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 282px; text-align: center;">5</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 334px; text-align: center;">6</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 386px; text-align: center;">7</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 438px; text-align: center;">8</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 490px; text-align: center;">9</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; top: 217px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">0.0</div><div style="position: absolute; top: 181px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">2.5</div><div style="position: absolute; top: 145px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">5.0</div><div style="position: absolute; top: 110px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">7.5</div><div style="position: absolute; top: 74px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 0px; text-align: right;">10.0</div><div style="position: absolute; top: 38px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 0px; text-align: right;">12.5</div><div style="position: absolute; top: 2px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 0px; text-align: right;">15.0</div></div></div><canvas class="flot-overlay" width="501" height="240" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 501px; height: 240px;"></canvas></div>
+
+           <div class="panel-info">
+            <span class="pull-left text-info"> <i class="fa fa-circle"></i>Jumlah Permintaan</span>
+          </div> 
+        </div>              
+      </div>   
+   </div>
+ </div>
+</div>
 
 
+<h3>Permintaan Sebulan Terakhir</h3>
+  <div class = "row">
+  <div class = "col-md-12">    
+    <div class="panel panel-default">
+      <div class="panel-heading font-regular">Tabel Permintaan Sebulan Terakhir</div>
+      <div class="panel-body no-padder">
+        <div class="wrapper">
+          <div ui-jq="plot" ui-options="
+            [
+              { data: [ [0,71],[1,6.5],[2,12.5],[3,7],[4,9],[5,6],[6,11],[7,6.5],[8,8],[9,7] ], label: ' Unique Visits', points: { show: true, radius: 3, fill:true,fillColor : '#00b0ff' }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },                 
+            ],
+            {
+              colors: [ '#00b0ff','#8dc80e' ],
+              series: { shadowSize: 2 },
+              xaxis:{ font: { color: '#ccc' } },
+              yaxis:{ font: { color: '#ccc' } },
+              grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+              tooltip: true,
+              legend : false,
+              tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+            }
+          " style="height: 240px; padding: 0px; position: relative;"><canvas class="flot-base" width="501" height="240" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 501px; height: 240px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 22px; text-align: center;">0</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 74px; text-align: center;">1</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 126px; text-align: center;">2</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 178px; text-align: center;">3</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 230px; text-align: center;">4</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 282px; text-align: center;">5</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 334px; text-align: center;">6</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 386px; text-align: center;">7</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 438px; text-align: center;">8</div><div style="position: absolute; max-width: 50px; top: 228px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 490px; text-align: center;">9</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; top: 217px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">0.0</div><div style="position: absolute; top: 181px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">2.5</div><div style="position: absolute; top: 145px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">5.0</div><div style="position: absolute; top: 110px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 6px; text-align: right;">7.5</div><div style="position: absolute; top: 74px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 0px; text-align: right;">10.0</div><div style="position: absolute; top: 38px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 0px; text-align: right;">12.5</div><div style="position: absolute; top: 2px; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 10px; line-height: 12px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: rgb(204, 204, 204); left: 0px; text-align: right;">15.0</div></div></div><canvas class="flot-overlay" width="501" height="240" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 501px; height: 240px;"></canvas></div>
 
+           <div class="panel-info">
+            <span class="pull-left text-info"> <i class="fa fa-circle"></i>Jumlah Permintaan</span>
+          </div> 
+        </div>              
+      </div>   
+   </div>
+ </div>
+</div>
+</div>
+        
+<!-- / content -->
+</div>
 
-<script src="../resources/libs/jquery/jquery/dist/jquery.js"></script>
-<script src="../resources/libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
-<script src="js/ui-load.js"></script>
-<script src="js/ui-jp.config.js"></script>
-<script src="js/ui-jp.js"></script>
-<script src="js/ui-nav.js"></script>
-<script src="js/ui-toggle.js"></script>
-<script src="js/ui-client.js"></script>
-
-</body>
-</html>
+<?php include("includes/footer.php"); ?>
