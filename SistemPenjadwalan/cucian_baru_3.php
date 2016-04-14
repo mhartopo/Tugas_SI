@@ -5,10 +5,10 @@
     <title>Urban Laundry</title>
     <meta name="description" content="Urban Laundry Bandung" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
-    <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="../libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
-    <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../resources/libs/assets/animate.css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="../resources/libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../resources/libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="../resources/libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="css/font.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -48,30 +48,29 @@
 
         <!-- content -->
         <div id="content" class="content content-ul">
-            <h3>ID JUM0104160001</h3>
             <div class="row">
                 <div class="col-sm-6">
                     <table class='table table-borderless'>
                         <tbody>
                             <tr>
                                 <td>Nama</td>
-                                <td>: Try Yulyanto</td>
+                                <td>: <?php session_start(); echo $_SESSION['nama'] ?></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
-                                <td>: Jl. Cisitu Baru No.9998</td>
+                                <td>: <?php echo $_SESSION['alamat'] ?></td>
                             </tr>
                             <tr>
                                 <td>No. Telepon</td>
-                                <td>: 085456789555</td>
+                                <td>: <?php echo $_SESSION['telepon'] ?></td>
                             </tr>
                             <tr>
                                 <td>Tanggal Order</td>
-                                <td>: Sabtu, 9 April 2016</td>
+                                <td>: <?php echo $_SESSION['tanggalOrder'] ?></td>
                             </tr>
                             <tr>
                                 <td>Tanggal Selesai</td>
-                                <td>: Selasa, 12 April 2016</td>
+                                <td>: <?php echo $_SESSION['tanggalSelesai'] ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,27 +80,27 @@
                         <tbody>
                             <tr>
                                 <td>Member</td>
-                                <td>: Ya</td>
+                                <td>: <?php echo $_SESSION['isMember'] ?></td>
                             </tr>
                             <tr>
                                 <td>Kuota</td>
-                                <td>: Rp 10.000</td>
+                                <td>: </td>
                             </tr>
                             <tr>
                                 <td>Softener</td>
-                                <td>: Softener</td>
+                                <td>: <?php echo $_SESSION['softener'] ?></td>
                             </tr>
                             <tr>
                                 <td>Parfum</td>
-                                <td>: Parfum</td>
+                                <td>: <?php echo $_SESSION['parfum'] ?></td>
                             </tr>
                             <tr>
                                 <td>Delivery</td>
-                                <td>: Ya</td>
+                                <td>: <?php echo $_SESSION['isDelivery'] ?></td>
                             </tr>
                             <tr>
                                 <td>Pick-up</td>
-                                <td>: Ya</td>
+                                <td>: <?php echo $_SESSION['isPickUp'] ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -121,19 +120,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Ekonomis(kg)</td>
-                                    <td>Rp 10.000</td>
-                                    <td>100</td>
-                                    <td>Rp1.000.000</td>
-                                </tr>
+                                <?php
+                                    if (count($_SESSION['jenisServis']) > 0) {
+                                        $i = 1;
+                                        foreach ($_SESSION['jenisServis'] as $row) {
+                                            echo "<tr>";
+                                            echo "<td>".$i."</td>";
+                                            echo "<td>".$row['jenis']."</td>";
+                                            echo "<td>".$row['harga']."</td>";
+                                            echo "<td>".$row['jumlah']."</td>";
+                                            echo "<td>".$row['subtotal']."</td>";
+                                            $i = $i + 1;
+                                            echo "</tr>";
+                                        }
+                                    };
+                                ?>
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td>Total</td>
-                                    <td>Rp1.000.000</td>
+                                    <td><?php echo $_SESSION['total']; ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -142,8 +149,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <button type="submit" class="btn btn-default btn-lg ">Kembali</button>
-                    <button type="submit" class="btn btn-lg btn-success">Cetak</button>
+                    <button class="btn btn-default btn-lg ">Kembali</button>
+                    <button type="submit" name="createCucian3" class="btn btn-lg btn-success">Cetak</button>
                 </div>
             </div>
         </div>
@@ -151,8 +158,8 @@
 
     </div>
 
-    <script src="../libs/jquery/jquery/dist/jquery.js"></script>
-    <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../resources/libs/jquery/jquery/dist/jquery.js"></script>
+    <script src="../resources/libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
     <script src="js/ui-load.js"></script>
     <script src="js/ui-jp.config.js"></script>
     <script src="js/ui-jp.js"></script>
