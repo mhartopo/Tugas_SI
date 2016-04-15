@@ -6,7 +6,7 @@
     <header id="header">
         <div class="row">
             <div class="title col-md-offset-9 col-md-3">
-                Jadwal Laundry
+                Ambil Cucian
             </div>
         </div>
     </header>
@@ -28,14 +28,13 @@
 					            <th>Tanggal Selesai</th>
 					            <th>ID Laundry</th>
 					            <th>Nama Pemilik</th>
-					            <th>Parfum</th>
-					            <th>Softener</th>
 					            <th></th>
+                                <th></th>
 					          </tr>
 					        </thead>
 					        <tbody>
 					        	<?php
-					        		$laundry = getJadwalCucian();
+					        		$laundry = getAllCucian();
 					        		if (count($laundry > 0)) {
                                         $i = 1;
                                         foreach ($laundry as $key => $field) {
@@ -44,11 +43,15 @@
                                             echo "<td>".$laundry[$key]['tanggal_selesai']."</td>";
                                             echo "<td>".$laundry[$key]['id_laundry']."</td>";
                                             echo "<td>".$laundry[$key]['nama_customer']."</td>";
-                                            echo "<td>".$laundry[$key]['parfum']."</td>";
-                                            echo "<td>".$laundry[$key]['softener']."</td>";
                                             echo "<td>
                                                 <input type=button class=\"btn btn-sm btn-success\" onClick=\"parent.location='detail_cucian.php?id=".$laundry[$key]['id_laundry']."'\" value='Lihat Cucian'>
                                             	</td>";
+                                            echo "<td>
+                                                <form method=\"POST\" action=\"../resources/functions/cucian_functions.php\" role=\"form\">
+                                                    <input type=\"hidden\" name=\"id\" value=".$laundry[$key]['id_laundry']." />
+                                                    <button type=\"submit\" name=\"ambil\" class=\"btn btn-sm btn-success\">Ambil Cucian</button>
+                                                </form>
+                                                </td>";
                                             $i = $i + 1;
                                             echo "</tr>";
                                         }
