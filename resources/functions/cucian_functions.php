@@ -37,7 +37,7 @@
 		$total = 0;
 		if (count($temp) > 0) {
             foreach ($temp as $key => $field) {
-            	$temp[$key]['harga'] = searchHargaService($temp[$key]['jenis'])[0][0];
+            	$temp[$key]['harga'] = searchHargaServis($temp[$key]['jenis'])[0][0];
                 $temp[$key]['subtotal'] = intval($temp[$key]['jumlah']) * intval($temp[$key]['harga']);
                 $total = $total + $temp[$key]['subtotal'];
             }
@@ -50,7 +50,7 @@
 	}
 
 	function createCucian3() {
-		start();
+		/*start();
 		global $db;
 
 		try {
@@ -78,7 +78,8 @@
 			echo $e->getMessage();
 		}
 
-		header('Location: /Tugas_SI/SistemPenjadwalan/index.html');
+		header('Location: /Tugas_SI/SistemPenjadwalan/index.html');*/
+		echo "huftina";
 	}
 
 	function getJadwalCucian() {
