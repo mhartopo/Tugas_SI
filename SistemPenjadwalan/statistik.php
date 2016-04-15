@@ -1,5 +1,8 @@
-<?php include("includes/head.php"); ?>
-<?php include ("../resources/functions/statistic_count.php"); ?>
+<?php 
+  include("includes/head.php"); 
+  include ("../resources/functions/statistic_count.php"); 
+  writeLog("Information","Lihat Statistik");
+?>
 
 <div class="app">
 <!-- header -->
@@ -74,8 +77,13 @@
             <span class="pull-left text-info"> <i class="fa fa-circle"></i>Jumlah Permintaan</span>
           </div> 
         </div>              
-      </div>   
+      </div>  
    </div>
+   <div class="row">
+            <div class="col-md-12">
+                <a href = "index.php" class="btn btn-success btn-lg">Kembali</a>
+            </div>
+        </div> 
  </div>
 </div>
 </div>
