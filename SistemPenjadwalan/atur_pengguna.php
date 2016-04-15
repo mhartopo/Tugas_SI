@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class="">
-<head>
-    <meta charset="utf-8" />
-    <title>Urban Laundry</title>
-    <meta name="description" content="Urban Laundry Bandung" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
-    <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="../libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
-    <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="css/font.css" type="text/css" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="stylesheet" href="css/mighticon.css" type="text/css" />
-</head>
-<body>
+<?php include ("../resources/templates/header.html") ?>
     <div class="app">
         <!-- header -->
         <header id="header">
@@ -95,15 +80,4 @@
         <!-- / content -->
 
     </div>
-
-    <script src="../libs/jquery/jquery/dist/jquery.js"></script>
-    <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="js/ui-load.js"></script>
-    <script src="js/ui-jp.config.js"></script>
-    <script src="js/ui-jp.js"></script>
-    <script src="js/ui-nav.js"></script>
-    <script src="js/ui-toggle.js"></script>
-    <script src="js/ui-client.js"></script>
-
-</body>
-</html>
+<?php include ("../resources/templates/footer.html") ?>

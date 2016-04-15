@@ -2,19 +2,25 @@
 	require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
 	function createPengguna($username, $peran, $password) {
-		start();
+		//start();
 		global $db;
 
 		try {
 			$stmt = $db->prepare("SELECT * FROM pengguna WHERE nama=:username AND peran=:peran AND password=:password");
+			$stmt->bindParam(':username', $username);
+			$stmt->bindParam(':peran', $peran);
+			$stmt->bindParam(':password', $password);
 			$stmt->execute();
 
 			if($stmt->rowCount() > 0) {
+				return false;
+			} else {
 				$stmt = $db->prepare("INSERT INTO pengguna (nama, peran, password) VALUES(:username, :peran, :password)");
+				$stmt->bindParam(':username', $username);
+				$stmt->bindParam(':peran', $peran);
+				$stmt->bindParam(':password', $password);
 				$stmt->execute();
 				return true;
-			} else {
-				return false;
 			}
 
 		} catch(PDOException $e) {
@@ -77,7 +83,6 @@
 			$stmt = $db->prepare("DELETE FROM pengguna WHERE id=:id");
 			$stmt->execute();
 
-			}
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
@@ -88,6 +93,7 @@
 
 		try {
 			$stmt = $db->prepare("SELECT id_pengguna, peran, password FROM pengguna WHERE nama=:username LIMIT 1");
+			$stmt->bindParam(':username', $username);
 			$stmt->execute();
 
 			$user = $stmt->fetch(PDO::FETCH_ASSOC);
