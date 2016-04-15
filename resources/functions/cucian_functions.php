@@ -54,7 +54,7 @@
 		global $db;
 
 		try {
-			$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, bayar, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :bayar, :pick_up, :delivery)");
+			$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
 			$stmt->bindParam(':tanggal_masuk', $_SESSION['tanggalOrder']);
 			$stmt->bindParam(':tanggal_selesai', $_SESSION['tanggalSelesai']);
 			$stmt->bindParam(':id_member', $_SESSION['']);
@@ -65,9 +65,14 @@
 			$stmt->bindParam(':parfum', $_SESSION['parfum']);
 			$stmt->bindParam(':softener', $_SESSION['softener']);
 			$stmt->bindParam(':jumlah', $_SESSION['jumlah']);
-			$stmt->bindParam(':bayar', );
-			$stmt->bindParam(':pick_up', $_SESSION['']);
-			$stmt->bindParam(':delivery', $_SESSION['']);
+			if ($_SESSION['isPickUp'] == "Ya")
+				$stmt->bindParam(':pick_up', 1);
+			else
+				$stmt->bindParam(':pick_up', 0);
+			if ($_SESSION['isDelivery'] == "Ya")
+				$stmt->bindParam(':delivery', 1);
+			else
+				$stmt->bindParam(':delivery', 0);
 			$stmt->execute();
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -76,10 +81,10 @@
 		header('Location: /Tugas_SI/SistemPenjadwalan/index.html');
 	}
 
-	function getAllCucian() {
+	function getJadwalCucian() {
 		global $db;
 		try {
-			$stmt = $db->prepare("SELECT id, nama_customer, tanggal_selesai, parfum, softener from laundry_pengerjaan");
+			$stmt = $db->prepare("SELECT id_laundry, nama_customer, tanggal_selesai, parfum, softener, jumlah from laundry_pengerjaan ORDER BY tanggal_selesai");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
@@ -101,6 +106,32 @@
 		$db = null;
 	}
 
+	function getCucianById($id) {
+		global $db;
+		try {
+			$stmt = $db->prepare("SELECT * from laundry_pengerjaan WHERE id_laundry = :id");
+			$stmt->bindParam(':id', $id);
+			$stmt->execute();
+			return $stmt->fetchAll();
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+		$db = null;
+	}
+
+	function getServisById($id) {
+		global $db;
+		try {
+			$stmt = $db->prepare("SELECT * from servis_pengerjaan WHERE id_laundry = :id");
+			$stmt->bindParam(':id', $id);
+			$stmt->execute();
+			return $stmt->fetchAll();
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+		$db = null;
+	}
+
 	function searchCucian($nama) {
 		global $db;
 		try {
@@ -113,7 +144,3 @@
 		}
 		$db = null;
 	}
-
-	
-
-	
