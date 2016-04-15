@@ -14,24 +14,26 @@
         <div id="content" class="content">
             <div class="row">
                 <div class="col-sm-6">
-                    <form role="form">
+                    <form role="form" method="post" action="../resources/functions/penggunaUbah.php">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="username">
                         </div>
                         <div class="form-group">
                             <label>Peran</label>
                             <select name="peran" class="form-control m-b">
-                                <option></option>
+                                <option value="0">Petugas</option>
+                                <option value="1">Admin</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Kata Kunci</label>
-                            <input type="password" class="form-control">
+                            <input type="password" class="form-control" name="password">
                         </div>
                         <div class="form-group">
                             <label>Konfirmasi Kata Kunci</label>
-                            <input type="password" class="form-control">
+                            <input type="password" class="form-control" name="password_c">
+                            <input type="hidden" class="form-control" name="id" value="<?php echo $_GET['id'];?>">
                         </div>
                         <button type="submit" class="btn btn-default btn-lg ">Batal</button>
                         <button type="submit" class="btn btn-lg btn-success">Selesai</button>

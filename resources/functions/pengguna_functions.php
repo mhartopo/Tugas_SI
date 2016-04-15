@@ -29,7 +29,7 @@
 	}
 
 	function getDataPengguna() {
-		start();
+		//start();
 		global $db;
 
 		try {
@@ -45,8 +45,10 @@
 	}
 
 	function getDataPenggunaBySearch($search) {
-		start();
+		//start();
 		global $db;
+
+		$search = '%' . $search . '%';
 
 		try {
 			$stmt = $db->prepare("SELECT id_pengguna, nama, peran FROM pengguna WHERE nama LIKE :search OR id_pengguna LIKE :search");
