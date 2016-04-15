@@ -1,5 +1,5 @@
 <?php
-
+	echo realpath(dirname(__FILE__)."/../log.txt");
 	function writeLog($date, $type, $message) {
 		$log_file = realpath(dirname(__FILE__)."/../log.txt");
 		$current = file_get_contents($log_file);

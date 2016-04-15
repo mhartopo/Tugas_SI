@@ -21,7 +21,7 @@
 			if($str != "") {
 				$carry = ",";
 			}
-			$str = $carry.$str."[".$row['tanggal_masuk'].",".$row['jumlah']."]"
+			$str = $carry.$str."[".$row['tanggal_masuk'].",".$row['jumlah']."]";
 		}
 		return $str;
 	}
