@@ -1,5 +1,8 @@
-<?php include("includes/head.php"); ?>
-
+<?php 
+  include("includes/head.php"); 
+  include ("../resources/functions/statistic_count.php"); 
+  writeLog("Information","Lihat Statistik");
+?>
 
 <div class="app">
 <!-- header -->
@@ -23,7 +26,7 @@
         <div class="wrapper">
           <div ui-jq="plot" ui-options="
             [
-              { data: [ [0,7],[1,6.5],[2,12.5],[3,7],[4,9],[5,6],[6,11],[7,6.5],[8,8],[9,7], [10,11],[11,6.5],[12,8],[13,7],[14,11],[16,6.5],[18,8],[30,7] ], label: ' Unique Visits', points: { show: true, radius: 3, fill:true,fillColor : '#00b0ff' }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },                 
+              { data: [ <?php echo getNdayStat(7)?> ], label: ' Unique Visits', points: { show: true, radius: 3, fill:true,fillColor : '#00b0ff' }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },                 
             ],
             {
               colors: [ '#00b0ff','#8dc80e' ],
@@ -56,7 +59,7 @@
         <div class="wrapper">
           <div ui-jq="plot" ui-options="
             [
-              { data: [ [0,71],[1,6.5],[2,12.5],[3,7],[4,9],[5,6],[6,11],[7,6.5],[8,8],[9,7] ], label: ' Unique Visits', points: { show: true, radius: 3, fill:true,fillColor : '#00b0ff' }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },                 
+              { data: [ <?php echo getNdayStat(30) ?> ], label: ' Unique Visits', points: { show: true, radius: 3, fill:true,fillColor : '#00b0ff' }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },                 
             ],
             {
               colors: [ '#00b0ff','#8dc80e' ],
@@ -74,8 +77,13 @@
             <span class="pull-left text-info"> <i class="fa fa-circle"></i>Jumlah Permintaan</span>
           </div> 
         </div>              
-      </div>   
+      </div>  
    </div>
+   <div class="row">
+            <div class="col-md-12">
+                <a href = "index.php" class="btn btn-success btn-lg">Kembali</a>
+            </div>
+        </div> 
  </div>
 </div>
 </div>

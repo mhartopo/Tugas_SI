@@ -8,6 +8,8 @@
 		createCucian2();
 	} else if (isset($_POST['createCucian3'])) {
 		createCucian3();
+	} else if (isset($_POST['ambil'])) {
+		finishCucian();
 	}
 
 	function createCucian1() {
@@ -37,7 +39,7 @@
 		$total = 0;
 		if (count($temp) > 0) {
             foreach ($temp as $key => $field) {
-            	$temp[$key]['harga'] = searchHargaService($temp[$key]['jenis'])[0][0];
+            	$temp[$key]['harga'] = searchHargaServis($temp[$key]['jenis'])[0][0];
                 $temp[$key]['subtotal'] = intval($temp[$key]['jumlah']) * intval($temp[$key]['harga']);
                 $total = $total + $temp[$key]['subtotal'];
             }
@@ -50,7 +52,7 @@
 	}
 
 	function createCucian3() {
-		start();
+		/*start();
 		global $db;
 
 		try {
@@ -78,13 +80,26 @@
 			echo $e->getMessage();
 		}
 
-		header('Location: /Tugas_SI/SistemPenjadwalan/index.html');
+		header('Location: /Tugas_SI/SistemPenjadwalan/index.html');*/
+		echo "huftina";
 	}
 
 	function getJadwalCucian() {
 		global $db;
 		try {
 			$stmt = $db->prepare("SELECT id_laundry, nama_customer, tanggal_selesai, parfum, softener, jumlah from laundry_pengerjaan ORDER BY tanggal_selesai");
+			$stmt->execute();
+			return $stmt->fetchAll();
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+		$db = null;
+	}
+
+	function getAllCucian() {
+		global $db;
+		try {
+			$stmt = $db->prepare("SELECT id_laundry, nama_customer, tanggal_selesai from laundry_pengerjaan ORDER BY tanggal_masuk");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
@@ -143,4 +158,57 @@
 			echo $e->getMessage();
 		}
 		$db = null;
+	}
+
+	function finishCucian() {
+		global $db;
+		try {
+			// laundry
+			$stmt = $db->prepare("SELECT * from laundry_pengerjaan WHERE id_laundry = :id");
+			$stmt->bindParam(':id', $_POST['id']);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+			foreach ($result as $key => $field) {
+				$stmt = $db->prepare("INSERT INTO laundry_selesai (id_laundry, tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:id_laundry, :tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
+				$stmt->bindParam(':id_laundry', $_POST['id']);
+				$stmt->bindParam(':tanggal_masuk', $result[$key]['tanggal_masuk']);
+				$stmt->bindParam(':tanggal_selesai', $result[$key]['tanggal_selesai']);
+				$stmt->bindParam(':id_member', $result[$key]['id_member']);
+				$stmt->bindParam(':nama_customer', $result[$key]['nama_customer']);
+				$stmt->bindParam(':alamat_customer', $result[$key]['alamat_customer']);
+				$stmt->bindParam(':no_telp_customer', $result[$key]['no_telp_customer']);
+				$stmt->bindParam(':harga', $result[$key]['harga']);
+				$stmt->bindParam(':parfum', $result[$key]['parfum']);
+				$stmt->bindParam(':softener', $result[$key]['softener']);
+				$stmt->bindParam(':jumlah', $result[$key]['jumlah']);
+				$stmt->bindParam(':pick_up', $result[$key]['pick_up']);
+				$stmt->bindParam(':delivery', $result[$key]['delivery']);
+				$stmt->execute();
+			}
+
+			// Servis
+			$stmt = $db->prepare("SELECT * from servis_pengerjaan WHERE id_laundry = :id");
+			$stmt->bindParam(':id', $_POST['id']);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+			foreach ($result as $key => $field) {
+				$stmt = $db->prepare("INSERT INTO servis_selesai (id_laundry, jenis, jumlah_cucian) VALUES (:id_laundry, :jenis, :jumlah_cucian)");
+				$stmt->bindParam(':id_laundry', $_POST['id']);
+				$stmt->bindParam(':jenis', $result[$key]['jenis']);
+				$stmt->bindParam(':jumlah_cucian', $result[$key]['jumlah_cucian']);
+				$stmt->execute();
+			}
+
+			// Delete
+			$stmt = $db->prepare("DELETE from servis_pengerjaan WHERE id_laundry = :id");
+			$stmt->bindParam(':id', $_POST['id']);
+			$stmt->execute();
+			$stmt = $db->prepare("DELETE from laundry_pengerjaan WHERE id_laundry = :id");
+			$stmt->bindParam(':id', $_POST['id']);
+			$stmt->execute();
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+		$db = null;
+		header('Location: /Tugas_SI/SistemPenjadwalan/ambil_cucian.php');
 	}

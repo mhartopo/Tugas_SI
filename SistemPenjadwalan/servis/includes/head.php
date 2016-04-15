@@ -15,3 +15,4 @@
     <link rel="stylesheet" href="../css/mighticon.css" type="text/css" />
 </head>
 <body>
+<?php include_once("../../resources/functions/log_manager.php"); ?>

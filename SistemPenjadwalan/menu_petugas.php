@@ -16,16 +16,16 @@
             <div><br></div>
             <div class="row">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btn-lg btn-margin col-md-12">Cucian Baru</button>
+                    <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = 'cucian_baru_1.php';">Cucian Baru</button>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btn-lg btn-margin col-md-12">Ambil Cucian</button>
+                    <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = '#';">Ambil Cucian</button>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btn-lg btn-margin col-md-12">Jadwal</button>
+                    <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = 'jadwal.php';">Jadwal</button>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btn-lg btn-margin col-md-12">Atur Pelanggan</button>
+                    <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = 'atur_pelanggan.php';">Atur Pelanggan</button>
                 </div>
             </div>
         </div>
