@@ -28,7 +28,7 @@
 
 		$temp = $_POST['jenisServis'];
 		$_SESSION['jumlah'] = $_POST['jumlah'];
-		$_SESSION['tanggalOrder'] = date("Y/m/d");
+		$_SESSION['tanggalOrder'] = date("Y-m-d");
 		$_SESSION['tanggalSelesai'] = $_POST['tanggalSelesai'];
 		$_SESSION['softener'] = $_POST['softener'];
 		$_SESSION['parfum'] = $_POST['parfum'];
@@ -52,36 +52,81 @@
 	}
 
 	function createCucian3() {
-		/*start();
+		session_start();
 		global $db;
 
 		try {
-			$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
-			$stmt->bindParam(':tanggal_masuk', $_SESSION['tanggalOrder']);
-			$stmt->bindParam(':tanggal_selesai', $_SESSION['tanggalSelesai']);
-			$stmt->bindParam(':id_member', $_SESSION['']);
-			$stmt->bindParam(':nama_customer', $_SESSION['nama']);
-			$stmt->bindParam(':alamat_customer', $_SESSION['alamat']);
-			$stmt->bindParam(':no_telp_customer', $_SESSION['telepon']);
-			$stmt->bindParam(':harga', $_SESSION['total']);
-			$stmt->bindParam(':parfum', $_SESSION['parfum']);
-			$stmt->bindParam(':softener', $_SESSION['softener']);
-			$stmt->bindParam(':jumlah', $_SESSION['jumlah']);
-			if ($_SESSION['isPickUp'] == "Ya")
-				$stmt->bindParam(':pick_up', 1);
-			else
-				$stmt->bindParam(':pick_up', 0);
-			if ($_SESSION['isDelivery'] == "Ya")
-				$stmt->bindParam(':delivery', 1);
-			else
-				$stmt->bindParam(':delivery', 0);
-			$stmt->execute();
+			// insert laundry
+			if ($_SESSION['isMember'] == "Member") {
+				// get member id
+				$stmt = $db->prepare("SELECT id_member from member WHERE nama = :nama AND no_telp = :no_telp");
+				$stmt->bindParam(':nama', $_SESSION['nama']);
+				$stmt->bindParam(':no_telp', $_SESSION['telepon']);
+				$stmt->execute();
+				$id_member = $stmt->fetchAll();
+
+				$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
+				$stmt->bindParam(':tanggal_masuk', $_SESSION['tanggalOrder']);
+				$stmt->bindParam(':tanggal_selesai', $_SESSION['tanggalSelesai']);
+				$stmt->bindParam(':id_member', $id_member[0][0]);
+				$stmt->bindParam(':nama_customer', $_SESSION['nama']);
+				$stmt->bindParam(':alamat_customer', $_SESSION['alamat']);
+				$stmt->bindParam(':no_telp_customer', $_SESSION['telepon']);
+				$stmt->bindParam(':harga', $_SESSION['total']);
+				$stmt->bindParam(':parfum', $_SESSION['parfum']);
+				$stmt->bindParam(':softener', $_SESSION['softener']);
+				$stmt->bindParam(':jumlah', $_SESSION['jumlah']);
+				if ($_SESSION['isPickUp'] == "Ya")
+					$stmt->bindParam(':pick_up', 1);
+				else
+					$stmt->bindParam(':pick_up', 0);
+				if ($_SESSION['isDelivery'] == "Ya")
+					$stmt->bindParam(':delivery', 1);
+				else
+					$stmt->bindParam(':delivery', 0);
+				$stmt->execute();
+			}
+			else {
+				$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
+				$stmt->bindParam(':tanggal_masuk', $_SESSION['tanggalOrder']);
+				$stmt->bindParam(':tanggal_selesai', $_SESSION['tanggalSelesai']);
+				$stmt->bindParam(':nama_customer', $_SESSION['nama']);
+				$stmt->bindParam(':alamat_customer', $_SESSION['alamat']);
+				$stmt->bindParam(':no_telp_customer', $_SESSION['telepon']);
+				$stmt->bindParam(':harga', $_SESSION['total']);
+				$stmt->bindParam(':parfum', $_SESSION['parfum']);
+				$stmt->bindParam(':softener', $_SESSION['softener']);
+				$stmt->bindParam(':jumlah', $_SESSION['jumlah']);
+				$yes = 1;
+				$no = 0;
+				if ($_SESSION['isPickUp'] == "Ya")
+					$stmt->bindParam(':pick_up', $yes);
+				else
+					$stmt->bindParam(':pick_up', $no);
+				if ($_SESSION['isDelivery'] == "Ya")
+					$stmt->bindParam(':delivery', $yes);
+				else
+					$stmt->bindParam(':delivery', $no);
+				$stmt->execute();
+			}
+
+			//insert servis
+			$newest_id = $db->lastInsertId();
+			if (count($_SESSION['jenisServis']) > 0) {
+            foreach ($_SESSION['jenisServis'] as $key => $field) {
+            	$stmt = $db->prepare("INSERT INTO servis_pengerjaan(id_laundry, jenis, jumlah_cucian) VALUES (:id_laundry, :jenis, :jumlah_cucian)");
+				$stmt->bindParam(':id_laundry', $newest_id);
+				$stmt->bindParam(':jenis', $_SESSION['jenisServis'][$key]['jenis']);
+				$stmt->bindParam(':jumlah_cucian', $_SESSION['jenisServis'][$key]['jumlah']);
+				$stmt->execute();
+            }
+        };
+
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
 
-		header('Location: /Tugas_SI/SistemPenjadwalan/index.html');*/
-		echo "huftina";
+		header('Location: /Tugas_SI/SistemPenjadwalan/index.php');
 	}
 
 	function getJadwalCucian() {

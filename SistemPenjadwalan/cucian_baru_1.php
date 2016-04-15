@@ -70,7 +70,7 @@
                     <label>No. Telepon</label>
                     <input type="text" name="telepon" class="form-control" placeholder="Nomor Telepon">
                 </div>
-                <button class="btn btn-default btn-lg ">Kembali</button>
+                <button onClick="history.go(-1);return true;" class="btn btn-default btn-lg ">Kembali</button>
                 <button type="submit" name="createCucian1" class="btn btn-lg btn-success">Lanjut</button>
             </form>
         </div>
