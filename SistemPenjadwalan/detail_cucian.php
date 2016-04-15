@@ -68,7 +68,7 @@
                         <tbody>
                             <tr>
                                 <td>Member</td>
-                                <td>: </td>
+                                <td>: Bukan Member</td>
                             </tr>
                             <tr>
                                 <td>Kuota</td>
@@ -84,11 +84,21 @@
                             </tr>
                             <tr>
                                 <td>Delivery</td>
-                                <td>: <?php echo $laundry[0]['delivery'] ?></td>
+                                <?php 
+                                    if( $laundry[0]['delivery'] == 0)
+                                        echo "<td>: Tidak</td>";
+                                    else
+                                        echo "<td>: Ya</td>";
+                                ?>
                             </tr>
                             <tr>
                                 <td>Pick-up</td>
-                                <td>: <?php echo $laundry[0]['pick_up'] ?></td>
+                                <?php 
+                                    if( $laundry[0]['pick_up'] == 0)
+                                        echo "<td>: Tidak</td>";
+                                    else
+                                        echo "<td>: Ya</td>";
+                                ?>
                             </tr>
                         </tbody>
                     </table>
@@ -113,7 +123,7 @@
                                             echo "<tr>";
                                             echo "<td>".$i."</td>";
                                             echo "<td>".$row['jenis']."</td>";
-                                            echo "<td>".$row['jumlah']."</td>";
+                                            echo "<td>".$row['jumlah_cucian']."</td>";
                                             $i = $i + 1;
                                             echo "</tr>";
                                         }
@@ -126,7 +136,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-default btn-lg ">Kembali</button>
+                    <button onClick="history.go(-1);return true;" class="btn btn-default btn-lg ">Kembali</button>
                 </div>
             </div>
         </div>
