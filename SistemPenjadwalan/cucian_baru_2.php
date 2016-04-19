@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Tanggal Selesai</label>
-                                    <input type="text" name="tanggalSelesai" class="form-control" placeholder="DD/MM/YYYY">
+                                    <input type="text" name="tanggalSelesai" class="form-control" placeholder="YYYY-MM-DD">
                                 </div>
                             </div>
                         </div>
@@ -112,15 +112,11 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Softener</label>
-                                    <select name="softener" class="form-control m-b">
-                                        <option>Softener</option>
-                                    </select>
+                                    <input type="text" name="softener" class="form-control m-b" placeholder="Softener">
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Parfum</label>
-                                    <select name="parfum" class="form-control m-b">
-                                        <option>Parfum</option>
-                                    </select>
+                                    <input type="text" name="parfum" class="form-control m-b" placeholder="Parfum">
                                 </div>
                             </div>
                         </div>
@@ -156,7 +152,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-default btn-lg ">Kembali</button>
+                                <button onClick="history.go(-1);return true;" class="btn btn-default btn-lg ">Kembali</button>
                                 <button type="submit" name="createCucian2" class="btn btn-lg btn-success">Lanjut</button>
                             </div>
                         </div>

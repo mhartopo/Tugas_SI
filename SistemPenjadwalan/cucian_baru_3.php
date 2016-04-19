@@ -148,9 +148,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <button class="btn btn-default btn-lg ">Kembali</button>
-                    <button type="submit" name="createCucian3" class="btn btn-lg btn-success">Cetak</button>
+                <div class="col-sm-3">
+                    <button class="btn btn-default btn-lg " onClick="history.go(-1);return true;" >Kembali</button>
+                </div>
+                <div class="col-sm-3">
+                    <form method="post" action="../resources/functions/cucian_functions.php" role="form">
+                        <button type="submit" name="createCucian3" class="btn btn-lg btn-success">Cetak</button>
+                    </form>
                 </div>
             </div>
         </div>
