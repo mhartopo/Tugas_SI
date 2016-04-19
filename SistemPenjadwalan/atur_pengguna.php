@@ -65,7 +65,7 @@
                                           echo "Petugas";
                                     echo '
                                         </td>
-                                        <td><button class="btn btn-sm btn-success" type="button" href="atur_pengguna_ubah.php?id='. $row['id_pengguna'] .'">Ubah</button></td>
+                                        <td><a class="btn btn-sm btn-success" type="button" href="atur_pengguna_ubah.php?id='. $row['id_pengguna'] .'">Ubah</a></td>
                                       </tr>
                                     ';
                                   }
@@ -76,7 +76,7 @@
                         <div class="panel-footer">
                             <div class="row wrapper-sm">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-sm btn-success" type="button">Pengguna Baru</button>       
+                                    <a class="btn btn-sm btn-success" type="button" href="atur_pengguna_baru.php">Pengguna Baru</a>       
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-default btn-lg ">Kembali</button>
+                    <a type="button" class="btn btn-default btn-lg " href="menu_admin.php">Kembali</a>
                 </div>
             </div>
         </div>
