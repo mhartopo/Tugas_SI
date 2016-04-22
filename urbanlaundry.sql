@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2016 at 05:35 AM
+-- Generation Time: Apr 22, 2016 at 06:51 AM
 -- Server version: 5.6.24-log
 -- PHP Version: 5.6.3
 
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `laundry_pengerjaan` (
   `parfum` varchar(15) NOT NULL,
   `softener` varchar(15) NOT NULL,
   `jumlah` int(4) NOT NULL,
+  `bayar` int(1) NOT NULL,
   `pick_up` int(1) NOT NULL,
   `delivery` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `laundry_selesai` (
   `parfum` varchar(15) NOT NULL,
   `softener` varchar(15) NOT NULL,
   `jumlah` int(4) NOT NULL,
+  `bayar` int(1) NOT NULL,
   `pick_up` int(1) NOT NULL,
   `delivery` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -108,7 +110,6 @@ CREATE TABLE IF NOT EXISTS `servis` (
 --
 
 INSERT INTO `servis` (`jenis`, `harga`) VALUES
-('1', 1),
 ('Bedcover Double', 27500),
 ('Bedcover Single', 17500),
 ('Blazer/Jas/Gaun', 22500),
@@ -133,6 +134,14 @@ CREATE TABLE IF NOT EXISTS `servis_pengerjaan` (
   `jenis` varchar(20) NOT NULL,
   `jumlah_cucian` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `servis_pengerjaan`
+--
+
+INSERT INTO `servis_pengerjaan` (`id_laundry`, `jenis`, `jumlah_cucian`) VALUES
+(6, 'Ekonomis (kg)', 2),
+(15, 'Ekonomis (kg)', 1);
 
 -- --------------------------------------------------------
 
@@ -184,13 +193,13 @@ ALTER TABLE `servis`
 -- Indexes for table `servis_pengerjaan`
 --
 ALTER TABLE `servis_pengerjaan`
- ADD PRIMARY KEY (`id_laundry`,`jenis`), ADD UNIQUE KEY `id_laundry` (`id_laundry`), ADD UNIQUE KEY `jenis` (`jenis`);
+ ADD KEY `id_laundry` (`id_laundry`), ADD KEY `jenis` (`jenis`);
 
 --
 -- Indexes for table `servis_selesai`
 --
 ALTER TABLE `servis_selesai`
- ADD PRIMARY KEY (`id_laundry`,`jenis`), ADD UNIQUE KEY `id_laundry` (`id_laundry`), ADD KEY `jenis` (`jenis`);
+ ADD KEY `jenis` (`jenis`), ADD KEY `id_laundry` (`id_laundry`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -226,13 +235,6 @@ ADD CONSTRAINT `laundry_pengerjaan_ibfk_1` FOREIGN KEY (`id_member`) REFERENCES 
 --
 ALTER TABLE `laundry_selesai`
 ADD CONSTRAINT `laundry_selesai_ibfk_1` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `servis_pengerjaan`
---
-ALTER TABLE `servis_pengerjaan`
-ADD CONSTRAINT `servis_pengerjaan_ibfk_1` FOREIGN KEY (`id_laundry`) REFERENCES `laundry_pengerjaan` (`id_laundry`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `servis_pengerjaan_ibfk_2` FOREIGN KEY (`jenis`) REFERENCES `servis` (`jenis`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `servis_selesai`

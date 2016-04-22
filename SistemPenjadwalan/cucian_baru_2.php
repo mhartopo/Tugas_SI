@@ -150,6 +150,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>
+                                        <input type="checkbox" name="bayar"> Sudah bayar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <button onClick="history.go(-1);return true;" class="btn btn-default btn-lg ">Kembali</button>
