@@ -3,6 +3,7 @@
   if (!isAdmin()) {
     header("location: /Tugas_SI/SistemPenjadwalan/index.php");
   }
+  $user = getDataPengguna($_SESSION['usession']);
 ?>
 
 <!DOCTYPE html>
@@ -21,3 +22,35 @@
     <link rel="stylesheet" href="css/style-bayu.css" type="text/css" />
 </head>
 <body>
+<div class="app app-header-fixed">
+  
+
+    <!-- header -->
+  <header id="header" class="app-header navbar" role="menu">
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse bg-info">
+
+        <!-- link and dropdown -->
+        <ul class="nav navbar-nav hidden-sm">
+          <li class="navbar-nav white">
+            <a href="index.php">BERANDA</a>
+          </li>
+          <li class="dropdown navbar-nav white">
+            <a href="#" data-toggle="dropdown" class="bg-blue profile-header dropdown-toggle clear" data-toggle="dropdown">
+              <span class="m-r-xl"><?php echo $user["nama"]; ?></span>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu animated fadeIn w-ml">
+              <li>
+                <a href="../resources/functions/logoutController.php">Keluar</a>
+              </li>
+            </ul>
+            <!-- / dropdown -->
+          </li>
+        </ul>
+        <!-- / link and dropdown -->
+
+      </div>
+      <!-- / navbar collapse -->
+  </header>
+  <!-- / header -->
