@@ -28,13 +28,14 @@
 		}
 	}
 
-	function getDataPengguna() {
-		start();
+	function getDataPengguna($id) {
+		//start();
 		global $db;
 
 		try {
-			$stmt = $db->prepare("SELECT id_pengguna, nama, peran FROM pengguna WHERE id=:id LIMIT 1");
-			$stmt->execute(array(':id'=>$_SESSION['usession']));
+			$stmt = $db->prepare("SELECT id_pengguna, nama, peran FROM pengguna WHERE id_pengguna=:id LIMIT 1");
+			$stmt->bindParam(':id', $id);
+			$stmt->execute();
 
 			$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -45,8 +46,10 @@
 	}
 
 	function getDataPenggunaBySearch($search) {
-		start();
+		//start();
 		global $db;
+
+		$search = '%' . $search . '%';
 
 		try {
 			$stmt = $db->prepare("SELECT id_pengguna, nama, peran FROM pengguna WHERE nama LIKE :search OR id_pengguna LIKE :search");
@@ -80,7 +83,8 @@
 		global $db;
 
 		try {
-			$stmt = $db->prepare("DELETE FROM pengguna WHERE id=:id");
+			$stmt = $db->prepare("DELETE FROM pengguna WHERE id_pengguna=:id");
+			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
 		} catch(PDOException $e) {

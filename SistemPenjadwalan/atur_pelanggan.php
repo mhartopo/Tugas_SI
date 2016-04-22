@@ -46,25 +46,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>9852</td>
-                                        <td>Muhtar</td>
-                                        <td>1000</td>
-                                        <td><button class="btn btn-sm btn-success" type="button">Ubah</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3875</td>
-                                        <td>Ica</td>
-                                        <td>1000</td>
-                                        <td><button class="btn btn-sm btn-success" type="button">Ubah</button></td>
-                                    </tr>
+                                <?php
+                                  require_once(realpath(dirname(__FILE__) . "/../resources/functions/pelanggan_functions.php"));
+                                  if (empty($_GET))
+                                    $search = '';
+                                  else
+                                    $search = $_GET['search'];
+                                  $rows = getDataPelangganBySearch($search);
+                                  foreach ($rows as $row) {
+                                    echo '
+                                      <tr>
+                                        <td>'. $row['id_member'] .'</td>
+                                        <td>'. $row['nama'] .'</td>
+                                        <td>'. $row['kuota'] .'</td>
+                                        <td><a class="btn btn-sm btn-success" type="button" href="atur_pelanggan_ubah.php?id='. $row['id_member'] .'">Ubah</a></td>
+                                      </tr>
+                                    ';
+                                  }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
                         <div class="panel-footer">
                             <div class="row wrapper-sm">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-sm btn-success" type="button">Member Baru</button>       
+                                    <a class="btn btn-sm btn-success" type="button" href="atur_pelanggan_baru.php">Member Baru</a>       
                                 </div>
                             </div>
                         </div>
@@ -73,7 +79,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-default btn-lg ">Kembali</button>
+                    <a type="button" class="btn btn-default btn-lg " href="menu_admin.php">Kembali</a>
                 </div>
             </div>
         </div>

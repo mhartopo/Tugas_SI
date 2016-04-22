@@ -14,7 +14,7 @@
         <div id="content" class="content">
             <div class="row">
                 <div class="col-sm-6">
-                    <form role="form" method="post" action="../resources/functions/penggunaBaru.php">
+                    <form role="form" method="post" action="../resources/functions/penggunaController.php">
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" name="username">
@@ -34,8 +34,8 @@
                             <label>Konfirmasi Kata Kunci</label>
                             <input type="password" class="form-control" name="password_c">
                         </div>
-                        <button type="submit" class="btn btn-default btn-lg ">Batal</button>
-                        <button type="submit" class="btn btn-lg btn-success">Selesai</button>
+                        <a type="button" class="btn btn-default btn-lg" href="atur_pengguna.php">Batal</a>
+                        <input type="submit" class="btn btn-lg btn-success" name="pengguna_baru" value="Selesai">
                     </form>
                 </div>
             </div>
