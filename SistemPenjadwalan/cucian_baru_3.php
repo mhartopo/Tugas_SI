@@ -72,6 +72,17 @@
                                 <td>Tanggal Selesai</td>
                                 <td>: <?php echo $_SESSION['tanggalSelesai'] ?></td>
                             </tr>
+                            <tr>
+                                <td>Bayar</td>
+                                <td>: <?php if ($_SESSION['isMember']=="Bukan Member")
+                                                if ($_SESSION['bayar']==0)
+                                                    echo "Belum"; 
+                                                else
+                                                    echo "Sudah";
+                                            else
+                                                echo "Sudah";
+                                      ?></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -84,7 +95,7 @@
                             </tr>
                             <tr>
                                 <td>Kuota</td>
-                                <td>: </td>
+                                <td>: <?php if ($_SESSION['isMember']=="Member") echo $_SESSION['kuota'] ?></td>
                             </tr>
                             <tr>
                                 <td>Softener</td>

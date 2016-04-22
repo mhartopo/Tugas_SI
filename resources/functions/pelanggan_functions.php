@@ -45,6 +45,24 @@
 		}
 	}
 
+	function getDataPelangganByTelp($nama, $no_telp) {
+		//start();
+		global $db;
+
+		try {
+			$stmt = $db->prepare("SELECT * from member WHERE nama = :nama AND no_telp = :no_telp LIMIT 1");
+			$stmt->bindParam(':nama', $nama);
+			$stmt->bindParam(':no_telp', $no_telp);
+			$stmt->execute();
+
+			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			return $user;
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+	}
+
 	function getDataPelangganBySearch($search) {
 		//start();
 		global $db;
@@ -84,6 +102,20 @@
 
 		try {
 			$stmt = $db->prepare("UPDATE member SET kuota=kuota + :kuota WHERE id_member=:id");
+			$stmt->bindParam(':kuota', $new_kuota);
+			$stmt->bindParam(':id', $id);
+			$stmt->execute();
+
+		} catch(PDOException $e) {
+			echo "Error: " . $e->getMessage();
+		}
+	}
+
+	function reduceKuota($id, $new_kuota) {
+		global $db;
+
+		try {
+			$stmt = $db->prepare("UPDATE member SET kuota=:kuota WHERE id_member=:id");
 			$stmt->bindParam(':kuota', $new_kuota);
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();

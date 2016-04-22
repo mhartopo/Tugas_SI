@@ -1,6 +1,6 @@
 <?php
   require_once("/../functions/pengguna_functions.php");
-  if (!isPengguna()) {
+  if (!isAdmin()) {
     header("location: /Tugas_SI/SistemPenjadwalan/index.php");
   }
 ?>
