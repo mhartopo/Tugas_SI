@@ -47,7 +47,6 @@
 	}
 
 	function getDataPengguna($id) {
-		//start();
 		global $db;
 
 		try {
