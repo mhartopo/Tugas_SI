@@ -20,3 +20,18 @@
 .form-control {
 	border-radius: 0px;
 }
+
+.app-header {
+  border-radius: 0;
+  position: fixed;
+}
+
+.navbar-nav {
+	border-radius: 100px;
+	border-color: #FFFFFF;
+	position: fixed;
+}
+
+.white {
+	background-color: #FFFFFF !important;
+}

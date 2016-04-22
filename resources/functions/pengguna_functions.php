@@ -121,7 +121,7 @@
 			if($stmt->rowCount() > 0) {
 				if(password_verify($password, $user['password'])) {
   					session_start();
-					$_SESSION['usession'] = $user['id'];
+					$_SESSION['usession'] = $user['id_pengguna'];
 					if($user['peran'] == 1)
 						$_SESSION['role'] = 'admin';
 					else
