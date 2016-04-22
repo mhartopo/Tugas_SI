@@ -1,4 +1,4 @@
-<?php include ("../resources/templates/header.html") ?>
+<?php include ("../resources/templates/header_admin.html") ?>
     <div class="app">
         <!-- header -->
         <header id="header">

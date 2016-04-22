@@ -30,11 +30,11 @@
             <form role="form" method="post" class="form-validation" action="../resources/functions/penggunaController.php">
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" class="form-control" placeholder="Nama">
+                    <input type="text" class="form-control" placeholder="Nama" name="username">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
                 <input type="submit" class="btn btn-lg btn-success" value="Masuk" name="login">
             </form>

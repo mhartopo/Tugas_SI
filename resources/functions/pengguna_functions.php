@@ -1,8 +1,27 @@
 <?php
 	require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
+	function start() {
+		if (session_status() == PHP_SESSION_NONE) {
+		    session_start();
+		}		
+	}
+
+	function isPetugas() {
+  		start();
+		return ($_SESSION['role'] == 'petugas');
+	}
+
+	function isAdmin() {
+  		start();
+		return ($_SESSION['role'] == 'admin');
+	}
+
+	function isPengguna() {
+		return isPetugas() || isAdmin();
+	}
+
 	function createPengguna($username, $peran, $password) {
-		//start();
 		global $db;
 
 		try {
@@ -17,7 +36,7 @@
 				$stmt = $db->prepare("INSERT INTO pengguna (nama, peran, password) VALUES(:username, :peran, :password)");
 				$stmt->bindParam(':username', $username);
 				$stmt->bindParam(':peran', $peran);
-				$stmt->bindParam(':password', crypt($password));
+				$stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));//crypt($password));
 				$stmt->execute();
 				return true;
 			}
@@ -45,7 +64,6 @@
 	}
 
 	function getDataPenggunaBySearch($search) {
-		//start();
 		global $db;
 
 		$search = '%' . $search . '%';
@@ -68,7 +86,7 @@
 		try {
 			$stmt = $db->prepare("UPDATE pengguna SET nama=:new_username, password=:new_password, peran=:new_peran WHERE id_pengguna=:id");
 			$stmt->bindParam(':new_username', $new_username);
-			$stmt->bindParam(':new_password', crypt($new_password));
+			$stmt->bindParam(':new_password', password_hash($password, PASSWORD_DEFAULT));//crypt($new_password));
 			$stmt->bindParam(':new_peran', $new_peran);
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();

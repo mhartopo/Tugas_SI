@@ -18,15 +18,22 @@
 		if ($password == $password_c) {
 			createPengguna($username, $peran, $password);
 			header("location: /Tugas_SI/SistemPenjadwalan/atur_pengguna.php");
-		} else
-
-		header("location: /Tugas_SI/SistemPenjadwalan/atur_pengguna_baru.php?pwdc=-1");
+		} else {
+			header("location: /Tugas_SI/SistemPenjadwalan/atur_pengguna_baru.php?pwdc=-1");
+		}
 	} else if (isset($_POST['pengguna_hapus'])) {
 		deletePengguna($id);
 		header("location: /Tugas_SI/SistemPenjadwalan/atur_pengguna.php");
 	} else if (isset($_POST['login'])) {
 		if (loginPengguna($username, $password)) {
-			header("location: /Tugas_SI/SistemPenjadwalan/home.php");
+			if (isPetugas()) {
+				header("location: /Tugas_SI/SistemPenjadwalan/menu_petugas.php");
+			} else if (isAdmin()) {
+				header("location: /Tugas_SI/SistemPenjadwalan/menu_admin.php");
+			} else {
+				header("location: /Tugas_SI/SistemPenjadwalan/index.php");
+			}
+			
 		} else {
 			header("location: /Tugas_SI/SistemPenjadwalan/index.php");
 		}
