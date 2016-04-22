@@ -9,4 +9,14 @@
 
 .btn-margin {
 	margin-top: 10px;
+	height: 80px;
+	width: 100%;
+}
+
+.btn {
+	border-radius: 0px;
+}
+
+.form-control {
+	border-radius: 0px;
 }

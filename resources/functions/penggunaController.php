@@ -24,4 +24,10 @@
 	} else if (isset($_POST['pengguna_hapus'])) {
 		deletePengguna($id);
 		header("location: /Tugas_SI/SistemPenjadwalan/atur_pengguna.php");
+	} else if (isset($_POST['login'])) {
+		if (loginPengguna($username, $password)) {
+			header("location: /Tugas_SI/SistemPenjadwalan/home.php");
+		} else {
+			header("location: /Tugas_SI/SistemPenjadwalan/index.php");
+		}
 	}

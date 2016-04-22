@@ -6,10 +6,9 @@
 		global $db;
 
 		try {
-			$stmt = $db->prepare("SELECT * FROM pengguna WHERE nama=:username AND peran=:peran AND password=:password");
+			$stmt = $db->prepare("SELECT * FROM pengguna WHERE nama=:username AND peran=:peran");
 			$stmt->bindParam(':username', $username);
 			$stmt->bindParam(':peran', $peran);
-			$stmt->bindParam(':password', $password);
 			$stmt->execute();
 
 			if($stmt->rowCount() > 0) {
@@ -18,7 +17,7 @@
 				$stmt = $db->prepare("INSERT INTO pengguna (nama, peran, password) VALUES(:username, :peran, :password)");
 				$stmt->bindParam(':username', $username);
 				$stmt->bindParam(':peran', $peran);
-				$stmt->bindParam(':password', $password);
+				$stmt->bindParam(':password', crypt($password));
 				$stmt->execute();
 				return true;
 			}
@@ -69,7 +68,7 @@
 		try {
 			$stmt = $db->prepare("UPDATE pengguna SET nama=:new_username, password=:new_password, peran=:new_peran WHERE id_pengguna=:id");
 			$stmt->bindParam(':new_username', $new_username);
-			$stmt->bindParam(':new_password', $new_password);
+			$stmt->bindParam(':new_password', crypt($new_password));
 			$stmt->bindParam(':new_peran', $new_peran);
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
@@ -96,7 +95,7 @@
 		global $db;
 
 		try {
-			$stmt = $db->prepare("SELECT id_pengguna, peran, password FROM pengguna WHERE nama=:username LIMIT 1");
+			$stmt = $db->prepare("SELECT id_pengguna, peran, password FROM pengguna WHERE nama=:username");
 			$stmt->bindParam(':username', $username);
 			$stmt->execute();
 
