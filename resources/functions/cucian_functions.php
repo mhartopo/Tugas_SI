@@ -1,5 +1,6 @@
 <?php
 	include 'servis/servis.php';
+	include 'pelanggan_functions.php';
 	require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
 	if (isset($_POST['createCucian1'])) {
@@ -20,6 +21,14 @@
 		$_SESSION['alamat'] = $_POST['alamat'];
 		$_SESSION['telepon'] = $_POST['telepon'];
 
+		if ($_SESSION['isMember'] == "Member")  {
+			// get data member
+			$member = getDataPelangganByTelp($_SESSION['nama'], $_SESSION['telepon']);
+			$_SESSION['id_member'] = $member['id_member'];
+			$_SESSION['kuota'] = $member['kuota'];
+			$_SESSION['alamat'] = $member['alamat'];
+		}
+
 		header('Location: /Tugas_SI/SistemPenjadwalan/cucian_baru_2.php');
 	}
 
@@ -35,6 +44,11 @@
 		$_SESSION['isDelivery'] = $_POST['isDelivery'];
 		$_SESSION['isPickUp'] = $_POST['isPickUp'];
 
+		if (isset($_POST['bayar']))
+			$_SESSION['bayar'] = 1;
+		else
+			$_SESSION['bayar'] = 0;
+
 		// array jenis servis
 		$total = 0;
 		if (count($temp) > 0) {
@@ -48,6 +62,11 @@
         $_SESSION['jenisServis'] = $temp;
         $_SESSION['total'] = $total;
 
+        // if member, set kuota
+        if ($_SESSION['isMember'] == "Member")  {
+			$_SESSION['kuota'] = $_SESSION['kuota'] - $total;
+		}
+
 		header('Location: /Tugas_SI/SistemPenjadwalan/cucian_baru_3.php');
 	}
 
@@ -58,17 +77,10 @@
 		try {
 			// insert laundry
 			if ($_SESSION['isMember'] == "Member") {
-				// get member id
-				$stmt = $db->prepare("SELECT id_member from member WHERE nama = :nama AND no_telp = :no_telp");
-				$stmt->bindParam(':nama', $_SESSION['nama']);
-				$stmt->bindParam(':no_telp', $_SESSION['telepon']);
-				$stmt->execute();
-				$id_member = $stmt->fetchAll();
-
-				$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
+				$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, bayar, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :bayar, :pick_up, :delivery)");
 				$stmt->bindParam(':tanggal_masuk', $_SESSION['tanggalOrder']);
 				$stmt->bindParam(':tanggal_selesai', $_SESSION['tanggalSelesai']);
-				$stmt->bindParam(':id_member', $id_member[0][0]);
+				$stmt->bindParam(':id_member', $_SESSION['id_member']);
 				$stmt->bindParam(':nama_customer', $_SESSION['nama']);
 				$stmt->bindParam(':alamat_customer', $_SESSION['alamat']);
 				$stmt->bindParam(':no_telp_customer', $_SESSION['telepon']);
@@ -76,18 +88,24 @@
 				$stmt->bindParam(':parfum', $_SESSION['parfum']);
 				$stmt->bindParam(':softener', $_SESSION['softener']);
 				$stmt->bindParam(':jumlah', $_SESSION['jumlah']);
+				$stmt->bindParam(':bayar', $_SESSION['bayar']);
+				$yes = 1;
+				$no = 0;
 				if ($_SESSION['isPickUp'] == "Ya")
-					$stmt->bindParam(':pick_up', 1);
+					$stmt->bindParam(':pick_up', $yes);
 				else
-					$stmt->bindParam(':pick_up', 0);
+					$stmt->bindParam(':pick_up', $no);
 				if ($_SESSION['isDelivery'] == "Ya")
-					$stmt->bindParam(':delivery', 1);
+					$stmt->bindParam(':delivery', $yes);
 				else
-					$stmt->bindParam(':delivery', 0);
+					$stmt->bindParam(':delivery', $no);
 				$stmt->execute();
+
+				// change kuota
+				reduceKuota($_SESSION['id_member'], $_SESSION['kuota']);
 			}
 			else {
-				$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
+				$stmt = $db->prepare("INSERT INTO laundry_pengerjaan (tanggal_masuk, tanggal_selesai, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, bayar, pick_up, delivery) VALUES (:tanggal_masuk, :tanggal_selesai, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :bayar, :pick_up, :delivery)");
 				$stmt->bindParam(':tanggal_masuk', $_SESSION['tanggalOrder']);
 				$stmt->bindParam(':tanggal_selesai', $_SESSION['tanggalSelesai']);
 				$stmt->bindParam(':nama_customer', $_SESSION['nama']);
@@ -97,6 +115,7 @@
 				$stmt->bindParam(':parfum', $_SESSION['parfum']);
 				$stmt->bindParam(':softener', $_SESSION['softener']);
 				$stmt->bindParam(':jumlah', $_SESSION['jumlah']);
+				$stmt->bindParam(':bayar', $_SESSION['bayar']);
 				$yes = 1;
 				$no = 0;
 				if ($_SESSION['isPickUp'] == "Ya")
@@ -144,7 +163,7 @@
 	function getAllCucian() {
 		global $db;
 		try {
-			$stmt = $db->prepare("SELECT id_laundry, nama_customer, tanggal_selesai from laundry_pengerjaan ORDER BY tanggal_masuk");
+			$stmt = $db->prepare("SELECT id_laundry, nama_customer, tanggal_selesai from laundry_pengerjaan ORDER BY tanggal_selesai");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {

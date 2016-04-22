@@ -67,14 +67,6 @@
                     <table class='table table-borderless'>
                         <tbody>
                             <tr>
-                                <td>Member</td>
-                                <td>: Bukan Member</td>
-                            </tr>
-                            <tr>
-                                <td>Kuota</td>
-                                <td>: </td>
-                            </tr>
-                            <tr>
                                 <td>Softener</td>
                                 <td>: <?php echo $laundry[0]['softener'] ?></td>
                             </tr>
@@ -98,6 +90,15 @@
                                         echo "<td>: Tidak</td>";
                                     else
                                         echo "<td>: Ya</td>";
+                                ?>
+                            </tr>
+                            <tr>
+                                <td>Bayar</td>
+                                <?php 
+                                    if( $laundry[0]['bayar'] == 0)
+                                        echo "<td>: Belum</td>";
+                                    else
+                                        echo "<td>: Sudah</td>";
                                 ?>
                             </tr>
                         </tbody>
