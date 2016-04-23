@@ -144,8 +144,10 @@
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
-
-		header('Location: /Tugas_SI/SistemPenjadwalan/index.php');
+		if (isAdmin())
+		    header("location: /Tugas_SI/SistemPenjadwalan/menu_admin.php");
+		else if (isPetugas())
+			header('Location: /Tugas_SI/SistemPenjadwalan/menu_petugas.php');
 	}
 
 	function getJadwalCucian() {

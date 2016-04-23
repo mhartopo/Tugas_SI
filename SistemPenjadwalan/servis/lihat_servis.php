@@ -1,5 +1,6 @@
 <?php 
 
+
 	include("includes/head.php"); 
     include('../../resources/functions/servis/servis.php');
         
