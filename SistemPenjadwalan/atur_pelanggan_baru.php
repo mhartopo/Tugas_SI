@@ -1,4 +1,10 @@
-<?php include ("../resources/templates/header.html") ?>
+<?php
+    include '../resources/functions/pengguna_functions.php';
+     if (isAdmin())
+       include ("../resources/templates/header_admin.html");
+    else if (isPetugas())
+        include ("../resources/templates/header.html");
+ ?>
     <div class="app">
         <!-- header -->
         <header id="header">

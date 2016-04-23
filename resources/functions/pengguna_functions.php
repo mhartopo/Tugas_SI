@@ -135,3 +135,8 @@
 			echo $e->getMessage();
 		}
 	}
+
+	function logoutPengguna() {
+		start();
+		session_destroy();
+	}

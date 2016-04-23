@@ -1,5 +1,12 @@
-<?php include('includes/head.php'); ?>
-<?php include '../resources/functions/cucian_functions.php'; ?>
+
+<?php
+    include '../resources/functions/cucian_functions.php';
+    include '../resources/functions/pengguna_functions.php';
+    if (isAdmin())
+       include ("../resources/templates/header_admin.html");
+    else if (isPetugas())
+        include ("../resources/templates/header.html");
+?>
 
 <div class="app">
     <!-- header -->
@@ -70,4 +77,3 @@
     <!-- / content -->
 </div>
 
-<?php include('includes/head.php'); ?>

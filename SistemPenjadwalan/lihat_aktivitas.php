@@ -1,5 +1,9 @@
 <?php 
-    include('includes/head.php');
+        include '../resources/functions/pengguna_functions.php';
+     if (isAdmin())
+       include ("../resources/templates/header_admin.html");
+    else if (isPetugas())
+        include ("../resources/templates/header.html");
     include '../resources/functions/cucian_functions.php'; 
     $file = realpath(dirname(__FILE__)."/../resources/log.txt");
     $i = 1;

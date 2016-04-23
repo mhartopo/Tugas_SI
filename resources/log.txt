@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2016/04/15 11:46:36am - Information - Bersihkan Log
 2016/04/15 11:53:36am - Information - Menambahkan servis Hebat
 2016/04/15 11:54:01am - Information - update servis Hebat 80000
@@ -64,3 +65,18 @@
 2016/04/23 03:31:22am - Information - Lihat Statistik
 2016/04/23 03:31:22am - Information - Lihat Statistik
 2016/04/23 03:31:23am - Information - Lihat Statistik
+=======
+2016/04/15 11:28:49am - Information - Bersihkan Log
+2016/04/15 11:32:37am - Information - Lihat Statistik
+2016/04/15 11:32:59am - Information - Lihat Statistik
+2016/04/15 11:33:18am - Information - Lihat Statistik
+2016/04/22 08:50:11am - Information - Menghapus servis Bedcover Double
+2016/04/23 01:56:29am - Information - Lihat Statistik
+2016/04/23 01:57:53am - Information - Lihat Statistik
+2016/04/23 02:08:02am - Information - Lihat Statistik
+2016/04/23 02:09:19am - Information - Lihat Statistik
+2016/04/23 02:19:28am - Information - Lihat Statistik
+2016/04/23 02:20:32am - Information - Lihat Statistik
+2016/04/23 02:20:52am - Information - Lihat Statistik
+2016/04/23 02:21:02am - Information - Lihat Statistik
+>>>>>>> 47f9b4f0132e99c7069f7d7c0fe023bec6bff42c

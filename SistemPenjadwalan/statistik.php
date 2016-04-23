@@ -1,7 +1,11 @@
 <?php 
-  include("includes/head.php"); 
   include ("../resources/functions/statistic_count.php"); 
-  writeLog("Information","Lihat Statistik");
+
+    include '../resources/functions/pengguna_functions.php';
+    if (isAdmin())
+       include ("../resources/templates/header_admin.html");
+    else if (isPetugas())
+        include ("../resources/templates/header.html");
 ?>
 
 <div class="app">

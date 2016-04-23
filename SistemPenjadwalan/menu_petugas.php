@@ -19,7 +19,7 @@
                     <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = 'cucian_baru_1.php';">Cucian Baru</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = '#';">Ambil Cucian</button>
+                    <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = 'ambil_cucian.php';">Ambil Cucian</button>
                 </div>
                 <div class="col-md-6">
                     <button class="btn btn-success btn-lg btn-margin col-md-12" onclick="location.href = 'jadwal.php';">Jadwal</button>
