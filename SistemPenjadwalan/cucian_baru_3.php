@@ -46,7 +46,7 @@
                         <tbody>
                             <tr>
                                 <td>Nama</td>
-                                <td>: <?php session_start(); echo $_SESSION['nama'] ?></td>
+                                <td>: <?php echo $_SESSION['nama'] ?></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>

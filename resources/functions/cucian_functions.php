@@ -1,6 +1,7 @@
 <?php
 	include 'servis/servis.php';
 	include 'pelanggan_functions.php';
+	include 'pengguna_functions.php';
 	require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
 	if (isset($_POST['createCucian1'])) {
@@ -59,6 +60,25 @@
             }
         };
 
+        $idx = count($temp);
+
+        if ($_SESSION['isPickUp'] == "Ya") {
+        	$temp[$idx]['jenis'] = "Pick Up";
+        	$temp[$idx]['jumlah'] = 1;
+			$temp[$idx]['harga'] = searchHargaServis("Pick Up")[0][0];
+            $temp[$idx]['subtotal'] = $temp[$idx]['harga'];
+			$total = $total + $temp[$idx]['subtotal'];
+		}
+
+		$idx = $idx + 1;
+		if ($_SESSION['isDelivery'] == "Ya") {
+        	$temp[$idx]['jenis'] = "Delivery";
+        	$temp[$idx]['jumlah'] = 1;
+			$temp[$idx]['harga'] = searchHargaServis("Delivery")[0][0];
+            $temp[$idx]['subtotal'] = $temp[$idx]['harga'];
+			$total = $total + $temp[$idx]['subtotal'];
+		}
+			
         $_SESSION['jenisServis'] = $temp;
         $_SESSION['total'] = $total;
 
@@ -235,7 +255,7 @@
 			$stmt->execute();
 			$result = $stmt->fetchAll();
 			foreach ($result as $key => $field) {
-				$stmt = $db->prepare("INSERT INTO laundry_selesai (id_laundry, tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, pick_up, delivery) VALUES (:id_laundry, :tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :pick_up, :delivery)");
+				$stmt = $db->prepare("INSERT INTO laundry_selesai (id_laundry, tanggal_masuk, tanggal_selesai, id_member, nama_customer, alamat_customer, no_telp_customer, harga, parfum, softener, jumlah, bayar, pick_up, delivery) VALUES (:id_laundry, :tanggal_masuk, :tanggal_selesai, :id_member, :nama_customer, :alamat_customer, :no_telp_customer, :harga, :parfum, :softener, :jumlah, :bayar, :pick_up, :delivery)");
 				$stmt->bindParam(':id_laundry', $_POST['id']);
 				$stmt->bindParam(':tanggal_masuk', $result[$key]['tanggal_masuk']);
 				$stmt->bindParam(':tanggal_selesai', $result[$key]['tanggal_selesai']);
@@ -247,6 +267,8 @@
 				$stmt->bindParam(':parfum', $result[$key]['parfum']);
 				$stmt->bindParam(':softener', $result[$key]['softener']);
 				$stmt->bindParam(':jumlah', $result[$key]['jumlah']);
+				$yes = 1;
+				$stmt->bindParam(':bayar', $yes);
 				$stmt->bindParam(':pick_up', $result[$key]['pick_up']);
 				$stmt->bindParam(':delivery', $result[$key]['delivery']);
 				$stmt->execute();
@@ -276,5 +298,5 @@
 			echo $e->getMessage();
 		}
 		$db = null;
-		header('Location: /Tugas_SI/SistemPenjadwalan/ambil_cucian.php');
+		//header('Location: /Tugas_SI/SistemPenjadwalan/ambil_cucian.php');
 	}
