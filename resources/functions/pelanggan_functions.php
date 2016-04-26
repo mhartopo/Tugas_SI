@@ -1,8 +1,10 @@
 <?php
 	require_once(realpath(dirname(__FILE__) . "/../config.php"));
+	require_once("pengguna_functions.php");
+	require_once("log_manager.php");
 
 	function createPelanggan($username, $alamat, $phone) {
-		//start();
+		start();
 		global $db;
 
 		try {
@@ -20,6 +22,8 @@
 				$stmt->bindParam(':alamat', $alamat);
 				$stmt->bindParam(':phone', $phone);
 				$stmt->execute();
+				$user = getDataPengguna($_SESSION['usession']);
+				writeLog($user['nama'], 'pelanggan baru: ' . $username . ', ' . $alamat . ', ' . $phone);
 				return true;
 			}
 
@@ -64,7 +68,6 @@
 	}
 
 	function getDataPelangganBySearch($search) {
-		//start();
 		global $db;
 
 		$search = '%' . $search . '%';
@@ -82,8 +85,9 @@
 	}
 
 	function updatePelanggan($id, $new_username, $new_alamat, $phone) {
+		start();
 		global $db;
-
+		
 		try {
 			$stmt = $db->prepare("UPDATE member SET nama=:new_username, alamat=:new_alamat, no_telp=:phone WHERE id_member=:id");
 			$stmt->bindParam(':new_username', $new_username);
@@ -92,47 +96,58 @@
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
+			$user = getDataPengguna($_SESSION['usession']);
+			writeLog($user['nama'], 'pelanggan ubah: id ' . $id . ', ' . $new_username . ', ' . $new_alamat . ', ' . $phone);
 		} catch(PDOException $e) {
 			echo "Error: " . $e->getMessage();
 		}
 	}
 
 	function updatePelangganKuota($id, $new_kuota) {
+		start();
 		global $db;
-
+		
 		try {
 			$stmt = $db->prepare("UPDATE member SET kuota=kuota + :kuota WHERE id_member=:id");
 			$stmt->bindParam(':kuota', $new_kuota);
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
+			$user = getDataPengguna($_SESSION['usession']);
+			writeLog($user['nama'], 'pelanggan kuota: ' . $id . ', kuota + ' . $new_kuota);
 		} catch(PDOException $e) {
 			echo "Error: " . $e->getMessage();
 		}
 	}
 
 	function reduceKuota($id, $new_kuota) {
+		start();
 		global $db;
-
+		
 		try {
 			$stmt = $db->prepare("UPDATE member SET kuota=:kuota WHERE id_member=:id");
 			$stmt->bindParam(':kuota', $new_kuota);
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
+			$user = getDataPengguna($_SESSION['usession']);
+			writeLog($user['nama'], 'pelanggan kuota: ' . $id . ', kuota ' . $new_kuota);
 		} catch(PDOException $e) {
 			echo "Error: " . $e->getMessage();
 		}
 	}
 
 	function deletePelanggan($id) {
+		start();
 		global $db;
-
+		
 		try {
 			$stmt = $db->prepare("DELETE FROM member WHERE id_member=:id");
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
+			$user = getDataPengguna($_SESSION['usession']);
+			writeLog($user['nama'], 'pelanggan hapus: ' . $id);
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}

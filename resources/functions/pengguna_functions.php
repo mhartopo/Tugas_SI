@@ -1,5 +1,6 @@
 <?php
 	require_once(realpath(dirname(__FILE__) . "/../config.php"));
+	require_once("log_manager.php");
 
 	function start() {
 		if (session_status() == PHP_SESSION_NONE) {
@@ -22,6 +23,7 @@
 	}
 
 	function createPengguna($username, $peran, $password) {
+		start();
 		global $db;
 
 		try {
@@ -38,6 +40,9 @@
 				$stmt->bindParam(':peran', $peran);
 				$stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));//crypt($password));
 				$stmt->execute();
+
+				$user = getDataPengguna($_SESSION['usession']);
+				writeLog($user['nama'], 'petugas baru: ' . $username . ', ' . $peran);
 				return true;
 			}
 
@@ -51,8 +56,7 @@
 
 		try {
 			$stmt = $db->prepare("SELECT id_pengguna, nama, peran FROM pengguna WHERE id_pengguna=:id LIMIT 1");
-			$stmt->bindParam(':id', $id);
-			$stmt->execute();
+			$stmt->execute(array(':id'=>$id));
 
 			$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -80,6 +84,7 @@
 	}
 
 	function updatePengguna($id, $new_username, $new_password, $new_peran) {
+		start();
 		global $db;
 
 		try {
@@ -90,12 +95,15 @@
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
+			$user = getDataPengguna($_SESSION['usession']);
+			writeLog($user['nama'], 'petugas ubah: id ' . $id . ', ' . $new_username . ', ' . $new_peran);
 		} catch(PDOException $e) {
 			echo "Error: " . $e->getMessage();
 		}
 	}
 
 	function deletePengguna($id) {
+		start();
 		global $db;
 
 		try {
@@ -103,6 +111,8 @@
 			$stmt->bindParam(':id', $id);
 			$stmt->execute();
 
+			$user = getDataPengguna($_SESSION['usession']);
+			writeLog($user['nama'], 'petugas hapus: id ' . $id);
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
@@ -126,6 +136,8 @@
 						$_SESSION['role'] = 'admin';
 					else
 						$_SESSION['role'] = 'petugas';
+					$user = getDataPengguna($_SESSION['usession']);
+					writeLog($username, 'login: id ' . $user['id_pengguna']);
 					return true;
 				} else {
 					return false;
@@ -138,5 +150,7 @@
 
 	function logoutPengguna() {
 		start();
+		$user = getDataPengguna($_SESSION['usession']);
+		writeLog($user['nama'], 'logout: id ' . $user['id_pengguna']);
 		session_destroy();
 	}
