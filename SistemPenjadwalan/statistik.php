@@ -130,7 +130,7 @@
    </div>
    <div class="row">
             <div class="col-md-12">
-                <a href = "index.php" class="btn btn-success btn-lg">Kembali</a>
+                <a href = "menu_admin.php" class="btn btn-default btn-lg">Kembali</a>
             </div>
         </div> 
  </div>
